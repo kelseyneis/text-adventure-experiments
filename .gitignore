@@ -58,3 +58,8 @@ target/
 # Gedit backup suffix 
 *~
 
+/.idea/text-adventure-tut.iml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/misc.xml
+/.idea/.gitignore
