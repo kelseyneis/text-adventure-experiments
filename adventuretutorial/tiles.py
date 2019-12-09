@@ -113,19 +113,19 @@ class EnemyRoom(MapTile):
 
     def available_actions(self):
         if self.enemy.is_alive():
-            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy)]
+            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy), actions.Converse(enemy=self.enemy)]
         else:
             return self.adjacent_moves()
 
 
-class GiantSpiderRoom(EnemyRoom):
+class DadJokeRoom(EnemyRoom):
     def __init__(self, x, y):
-        super().__init__(x, y, enemies.GiantSpider())
+        super().__init__(x, y, enemies.DadJokeGuy())
 
     def intro_text(self):
         if self.enemy.is_alive():
             return """
-            A giant spider jumps down from its web in front of you!
+            You are suddenly bombarded by the dreaded Dad Joke Guy!
             """
         else:
             return """

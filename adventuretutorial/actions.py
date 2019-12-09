@@ -2,6 +2,7 @@
 __author__ = 'Phillip Johnson'
 
 from player import Player
+from enemies import Enemy
 
 
 class Action():
@@ -57,3 +58,7 @@ class Attack(Action):
 class Flee(Action):
     def __init__(self, tile):
         super().__init__(method=Player.flee, name="Flee", hotkey='f', tile=tile)
+
+class Converse(Action):
+    def __init__(self, enemy):
+        super().__init__(method=Player.converse, name="Converse", hotkey='c', enemy=enemy)
