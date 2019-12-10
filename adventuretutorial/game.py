@@ -2,9 +2,10 @@
 A simple text adventure designed as a learning experience for new programmers.
 """
 __author__ = 'Phillip Johnson'
-import world
+import world, asciiArt
 from player import Player
 
+asciiArt.handle_image_conversion('../resources/7ea8bcc.jpg')
 
 def play():
     world.load_tiles()
