@@ -2,11 +2,11 @@
 A simple text adventure designed as a learning experience for new programmers.
 """
 __author__ = 'Phillip Johnson'
-import world, asciiArt, imageScraper
+import world, asciiArt
 from player import Player
 
 # asciiArt.handle_image_conversion('https://i.ytimg.com/vi/WXJ3cyeuhYU/hqdefault.jpg')
-imageScraper
+
 
 def play():
     world.load_tiles()

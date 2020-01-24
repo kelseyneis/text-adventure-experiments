@@ -4,5 +4,5 @@
 |EmptyCavePath
 DadJokeRoom|EmptyCavePath|StartingRoom|EmptyCavePath|FindDaggerRoom
 |Find5GoldRoom
-|EmptyCavePath|OgreRoom|Find5GoldRoom
+|EmptyCavePath|Find5GoldRoom
 ||SnakePitRoom
