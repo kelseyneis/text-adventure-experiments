@@ -132,22 +132,6 @@ class DadJokeRoom(EnemyRoom):
             The corpse of a dead spider rots on the ground.
             """
 
-
-class OgreRoom(EnemyRoom):
-    def __init__(self, x, y):
-        super().__init__(x, y, enemies.Ogre())
-
-    def intro_text(self):
-        if self.enemy.is_alive():
-            return """
-            An ogre is blocking your path!
-            """
-        else:
-            return """
-            A dead ogre reminds you of your triumph.
-            """
-
-
 class SnakePitRoom(MapTile):
     def intro_text(self):
         return """
