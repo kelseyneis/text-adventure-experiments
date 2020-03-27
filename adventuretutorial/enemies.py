@@ -1,7 +1,5 @@
-"""Defines the enemies in the game"""
-__author__ = 'Phillip Johnson'
-
 import world, requests, asciiArt
+
 class Enemy:
 
     """A base class for all enemies"""

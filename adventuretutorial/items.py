@@ -1,7 +1,3 @@
-"""Describes the items in the game."""
-__author__ = 'Phillip Johnson'
-
-
 class Item():
     """The base class for all items"""
     def __init__(self, name, description, value):
