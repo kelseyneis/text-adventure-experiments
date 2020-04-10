@@ -54,6 +54,6 @@ def handle_image_conversion(image_filepath):
 
 if __name__=='__main__':
     import sys
-
+    
     image_file_path = sys.argv[1]
     handle_image_conversion(image_file_path)

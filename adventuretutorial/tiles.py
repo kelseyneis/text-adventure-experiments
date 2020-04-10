@@ -46,23 +46,13 @@ class MapTile:
 
 class StartingRoom(MapTile):
     def intro_text(self):
-        return """The mechanical ring of your alarm clock jars you into a hazy half-conscious state after your unconscious brain tried to clumsily shoehorn the noise into your dream about cats. You pound it to shut it off, abusing the device as well as the side of your hand. For a brief moment, you manage to think about something other than your current reality. This is always the best half minute of the day. You wonder how much stress could have been saved back in the day had people gone for a more soothing sound to wake up to. If you had any other non-electronic options, you'd surely choose any one of them over the ear-splitting repetition of pounding bells you've been subjecting yourself to for the past two weeks. You miss your Spotify Handel playlist, but you can't risk it anymore. And the blissful moment of forgetfulness is over as you settle into the realization that everything is exactly as it was when you went to bed. You look around, but you can't see much. On the bedside table is the alarm clock, your glasses, a huge pair of what look like pink fluffy earmuffs, and a crumpled newspaper."""
-
-    def modify_player(self, the_player):
-        #Room has no action on player
-        pass
-
-
-class EmptyCavePath(MapTile):
-    def intro_text(self):
         return """
-        Another unremarkable part of the cave. You must forge onwards.
+        The mechanical ring of your alarm clock jars you into a hazy half-conscious state after your unconscious brain tried to clumsily shoehorn the noise into your dream about cats. You pound it to shut it off, abusing the device as well as the side of your hand. For a brief moment, you manage to think about something other than your current reality. This is always the best half minute of the day. You wonder how much stress could have been saved back in the day had people gone for a more soothing sound to wake up to. If you had any other non-electronic options, you'd surely choose any one of them over the ear-splitting repetition of pounding bells you've been subjecting yourself to for the past two weeks. You miss your Spotify Handel playlist, but you can't risk it anymore. And the blissful moment of forgetfulness is over as you settle into the realization that everything is exactly as it was when you went to bed. You look around, but you can't see much. On the bedside table is the alarm clock, your glasses, a huge pair of what look like pink fluffy earmuffs, and a crumpled newspaper.
         """
 
     def modify_player(self, the_player):
         #Room has no action on player
         pass
-
 
 class LootRoom(MapTile):
     """A room that adds something to the player's inventory"""
@@ -87,17 +77,6 @@ class FindDaggerRoom(LootRoom):
         It's a dagger! You pick it up.
         """
 
-
-class Find5GoldRoom(LootRoom):
-    def __init__(self, x, y):
-        super().__init__(x, y, items.Gold(5))
-
-    def intro_text(self):
-        return """
-        Someone dropped a 5 gold piece. You pick it up.
-        """
-
-
 class EnemyRoom(MapTile):
     def __init__(self, x, y, enemy):
         self.enemy = enemy
@@ -120,27 +99,9 @@ class DadJokeRoom(EnemyRoom):
         super().__init__(x, y, enemies.DadJokeGuy())
 
     def intro_text(self):
-        if self.enemy.is_alive():
-            return """
-            You are suddenly bombarded by the dreaded Dad Joke Guy!
-            """
-        else:
-            return """
-            The corpse of a dead spider rots on the ground.
-            """
-
-
-class SnakePitRoom(MapTile):
-    def intro_text(self):
         return """
-        You have fallen into a pit of deadly snakes!
-
-        You have died!
+        Your dad is in his usual spot on the couch, watching Rush documentaries and crocheting a blanket. The blanket has gotten to an unmanageable size, and you almost trip on it.
         """
-
-    def modify_player(self, player):
-        player.hp = 0
-
 
 class LeaveCaveRoom(MapTile):
     def intro_text(self):
