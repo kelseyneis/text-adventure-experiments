@@ -1,23 +1,13 @@
-import time, keyboard
+import time
 import world, asciiArt
 from player import Player
 
 # asciiArt.handle_image_conversion('https://i.ytimg.com/vi/WXJ3cyeuhYU/hqdefault.jpg')
-def slowPrint(text):
-    for letter in text:
-        print(letter, end='', flush=True)
-        if not keyboard.is_pressed('enter'):
-            time.sleep(.05)
-        else:
-            time.sleep(0)
-    keyboard.release('enter')
-    time.sleep(1)
-
 def play():
     world.load_tiles()
     player = Player()
     room = world.tile_exists(player.location_x, player.location_y)
-    slowPrint(room.intro_text())
+    print(room.intro_text())
     while player.is_alive() and not player.victory:
         room = world.tile_exists(player.location_x, player.location_y)
         room.modify_player(player)
