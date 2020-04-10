@@ -1,6 +1,3 @@
-"""Describes the actions a player can make in the game"""
-__author__ = 'Phillip Johnson'
-
 from player import Player
 from enemies import Enemy
 
@@ -62,3 +59,7 @@ class Flee(Action):
 class Converse(Action):
     def __init__(self, enemy):
         super().__init__(method=Player.converse, name="Converse", hotkey='c', enemy=enemy)
+
+class WearItem(Action):
+    def __init__(self, item):
+        super().__init__(method=Player.wear, name="Wear", hotkey='w', item=item)
