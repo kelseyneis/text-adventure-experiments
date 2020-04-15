@@ -1,4 +1,4 @@
-import world, requests, asciiArt
+import world, requests, relevance
 
 class Enemy:
 
@@ -28,13 +28,17 @@ class DadJokeGuy(Enemy):
         super().__init__(name="Dad Joke Guy", image="Sunflower.jpg", favor=10, damage=2, location_x=0, location_y=4)
 
     def converse(self):
-        while input('Hey pumpkin, I have a new joke I think you\'ll like. Wanna hear it?\n> ') != 'no':
+        while input('       Hey pumpkin, I have a new joke I think you\'ll like. Wanna hear it?\n> ') != 'no':
             resp = requests.get('https://icanhazdadjoke.com/', headers={'Accept': 'text/plain'})
             if resp.status_code != 200:
                 # This means something went wrong.
                 raise ApiError('GET /tasks/ {}'.format(resp.status_code))
-            if(input(f"{resp.text}\n> ") == 'haha'):
+            print(resp.text)
+            userInput = input()
+            if(userInput.lower() == 'haha'):
                 self.favor += 5
                 print("Dad is pleased that you liked his joke. New favor: ", self.favor)
+            elif(relevance.joke_response_analyzer(resp.text, userInput) == 0):
+                print('well fine')
         else:
             print('Alright, suit yourself. Don\'t forget to eat breakfast!')
