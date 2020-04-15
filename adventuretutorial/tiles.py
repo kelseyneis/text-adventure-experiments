@@ -1,11 +1,9 @@
-"""Describes the tiles in the world space."""
-__author__ = 'Phillip Johnson'
-
 import items, enemies, actions, world
 
 
 class MapTile:
     """The base class for a tile within the world space"""
+
     def __init__(self, x, y):
         """Creates a new tile.
 
@@ -47,15 +45,33 @@ class MapTile:
 class StartingRoom(MapTile):
     def intro_text(self):
         return """
-        The mechanical ring of your alarm clock jars you into a hazy half-conscious state after your unconscious brain tried to clumsily shoehorn the noise into your dream about cats. You pound it to shut it off, abusing the device as well as the side of your hand. For a brief moment, you manage to think about something other than your current reality. This is always the best half minute of the day. You wonder how much stress could have been saved back in the day had people gone for a more soothing sound to wake up to. If you had any other non-electronic options, you'd surely choose any one of them over the ear-splitting repetition of pounding bells you've been subjecting yourself to for the past two weeks. You miss your Spotify Handel playlist, but you can't risk it anymore. And the blissful moment of forgetfulness is over as you settle into the realization that everything is exactly as it was when you went to bed. You look around, but you can't see much. On the bedside table is the alarm clock, your glasses, a huge pair of what look like pink fluffy earmuffs, and a crumpled newspaper.
+        The mechanical ring of your alarm clock jars you into a hazy half-
+        conscious state after your unconscious brain tried to clumsily 
+        shoehorn the noise into your dream about cats. You pound it to shut
+        it off, abusing the device as well as the side of your hand. For a 
+        brief moment, you manage to think about something other than your 
+        current reality. This is always the best half minute of the day. 
+        You wonder how much stress could have been saved back in the day 
+        had people gone for a more soothing sound to wake up to. If you had
+        any other non-electronic options, you'd surely choose any one of 
+        them over the ear-splitting repetition of pounding bells you've 
+        been subjecting yourself to for the past two weeks. You miss your 
+        Spotify Handel playlist, but you can't risk it anymore. And the 
+        blissful moment of forgetfulness is over as you settle into the 
+        realization that everything is exactly as it was when you went to 
+        bed. You look around, but you can't see much. On the bedside table 
+        is the alarm clock, your glasses, a huge pair of what look like 
+        pink fluffy earmuffs, and a crumpled newspaper.
         """
 
     def modify_player(self, the_player):
-        #Room has no action on player
+        # Room has no action on player
         pass
+
 
 class LootRoom(MapTile):
     """A room that adds something to the player's inventory"""
+
     def __init__(self, x, y, item):
         self.item = item
         super().__init__(x, y)
@@ -77,15 +93,14 @@ class FindDaggerRoom(LootRoom):
         It's a dagger! You pick it up.
         """
 
+
 class EnemyRoom(MapTile):
     def __init__(self, x, y, enemy):
         self.enemy = enemy
         super().__init__(x, y)
 
     def modify_player(self, the_player):
-        if self.enemy.is_alive():
-            the_player.hp = the_player.hp - self.enemy.damage
-            print("Enemy does {} damage. You have {} HP remaining.".format(self.enemy.damage, the_player.hp))
+        pass
 
     def available_actions(self):
         if self.enemy.is_alive():
@@ -100,8 +115,11 @@ class DadJokeRoom(EnemyRoom):
 
     def intro_text(self):
         return """
-        Your dad is in his usual spot on the couch, watching Rush documentaries and crocheting a blanket. The blanket has gotten to an unmanageable size, and you almost trip on it.
+        Your dad is in his usual spot on the couch, watching Rush document-
+        aries and crocheting a blanket. The blanket has gotten to an unman-
+        ageable size, and you almost trip on it.
         """
+
 
 class LeaveCaveRoom(MapTile):
     def intro_text(self):
