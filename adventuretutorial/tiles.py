@@ -94,7 +94,7 @@ class FindDaggerRoom(LootRoom):
         """
 
 
-class EnemyRoom(MapTile):
+class CharacterRoom(MapTile):
     def __init__(self, x, y, enemy):
         self.enemy = enemy
         super().__init__(x, y)
@@ -104,12 +104,12 @@ class EnemyRoom(MapTile):
 
     def available_actions(self):
         if self.enemy.is_alive():
-            return [actions.Flee(tile=self), actions.Attack(enemy=self.enemy), actions.Converse(enemy=self.enemy)]
+            return [actions.Converse(enemy=self.enemy)]
         else:
             return self.adjacent_moves()
 
 
-class DadJokeRoom(EnemyRoom):
+class DadJokeRoom(CharacterRoom):
     def __init__(self, x, y):
         super().__init__(x, y, enemies.DadJokeGuy())
 

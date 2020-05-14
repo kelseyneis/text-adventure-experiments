@@ -1,12 +1,11 @@
 # todo:
-# 1. remove punctuation from joke and response_without_stopwords
 # 2. rename doc, token, lexicon variables
-# 3. add sentiment analysis
 
 import copy, math, nltk
 from collections import Counter
 from nltk.tokenize import TreebankWordTokenizer
 from collections import OrderedDict
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from nltk.stem import WordNetLemmatizer
 
 lemmatizer = WordNetLemmatizer()
@@ -33,6 +32,9 @@ def cosine_sim(query_vec, joke_tf_tdf_vec):
     else:
         return 0
 
+def sentiment(response):
+    sa = SentimentIntensityAnalyzer()
+    return sa.polarity_scores(response)
 
 def remove_stopwords(doc):
     stop_words.extend([',', '.', '--', '-', '!', '?', ':', ';', '``', "''", '(', ')', '[', ']'])
@@ -42,6 +44,8 @@ def remove_stopwords(doc):
 
 
 def joke_response_analyzer(joke, response):
+    response_sentiment = sentiment(response)
+
     joke2 = 'Did you hear about the scientist who was lab partners with a pot of boiling water? He had a very esteemed colleague.'
     joke3 = 'What do you call a fly without wings? A walk.'
     joke4 = 'When my wife told me to stop impersonating a flamingo, I had to put my foot down.'
@@ -59,6 +63,7 @@ def joke_response_analyzer(joke, response):
     sixth_joke_without_stopwords = remove_stopwords(joke6.lower())
     seventh_joke_without_stopwords = remove_stopwords(joke7.lower())
     eighth_joke_without_stopwords = remove_stopwords(joke8.lower())
+
 
     documents = [joke_without_stopwords, second_joke_without_stopwords, third_joke_without_stopwords,
                  fourth_joke_without_stopwords, fifth_joke_without_stopwords, sixth_joke_without_stopwords,
@@ -86,7 +91,6 @@ def joke_response_analyzer(joke, response):
 
         tokens = tokenizer.tokenize(doc.lower())
         token_counts = Counter(tokens)
-        print(token_counts)
         lexicon = set(tokens)
 
         for key, value in token_counts.items():
@@ -103,8 +107,7 @@ def joke_response_analyzer(joke, response):
         document_tfidf_vectors.append(vec)
 
     query = response_without_stopwords.lower()
-    query_vec = copy.copy(
-        vector_template)  # So we are dealing with new objects, not multiple references to the same object
+    query_vec = copy.copy(vector_template)  # So we are dealing with new objects, not multiple references to the same object
 
     query_tokens = tokenizer.tokenize(query.lower())
     query_token_counts = Counter(query_tokens)
@@ -120,4 +123,4 @@ def joke_response_analyzer(joke, response):
         inverse_document_frequency = len(documents) / docs_containing_key
         query_vec[query_word] = term_frequency * inverse_document_frequency
     relevance = cosine_sim(query_vec, document_tfidf_vectors[0])
-    return relevance
+    return {'relevance': relevance, 'sentiment': response_sentiment}
