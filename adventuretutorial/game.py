@@ -2,9 +2,7 @@ import time
 import world, asciiArt, relevance
 from player import Player
 
-# asciiArt.handle_image_conversion('https://i.ytimg.com/vi/WXJ3cyeuhYU/hqdefault.jpg')
 def play():
-    relevance.joke_response_analyzer('joke', 'haha')
     world.load_tiles()
     player = Player()
     room = world.tile_exists(player.location_x, player.location_y)
