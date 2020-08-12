@@ -38,7 +38,7 @@ class Player():
     def move_west(self):
         self.move(dx=-1, dy=0)
 
-    def attack(self, enemy):
+    def attack(self, character):
         best_weapon = None
         max_dmg = 0
         for i in self.inventory:
@@ -47,12 +47,12 @@ class Player():
                     max_dmg = i.damage
                     best_weapon = i
 
-        print("You use {} against {}!".format(best_weapon.name, enemy.name))
-        enemy.hp -= best_weapon.damage
-        if not enemy.is_alive():
-            print("You killed {}!".format(enemy.name))
+        print("You use {} against {}!".format(best_weapon.name, character.name))
+        character.hp -= best_weapon.damage
+        if not character.is_alive():
+            print("You killed {}!".format(character.name))
         else:
-            print("{} HP is {}.".format(enemy.name, enemy.hp))
+            print("{} HP is {}.".format(character.name, character.hp))
 
     def flee(self, tile):
         """Moves the player randomly to an adjacent tile"""
@@ -60,8 +60,8 @@ class Player():
         r = random.randint(0, len(available_moves) - 1)
         self.do_action(available_moves[r])
 
-    def converse(self, enemy):
-        enemy.converse()
+    def converse(self, character):
+        character.converse()
 
     def wear(self, item):
         self.worn_items.append(item)

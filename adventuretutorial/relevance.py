@@ -64,7 +64,6 @@ def joke_response_analyzer(joke, response):
     seventh_joke_without_stopwords = remove_stopwords(joke7.lower())
     eighth_joke_without_stopwords = remove_stopwords(joke8.lower())
 
-
     documents = [joke_without_stopwords, second_joke_without_stopwords, third_joke_without_stopwords,
                  fourth_joke_without_stopwords, fifth_joke_without_stopwords, sixth_joke_without_stopwords,
                  seventh_joke_without_stopwords, eighth_joke_without_stopwords]

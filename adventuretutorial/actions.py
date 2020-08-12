@@ -1,5 +1,5 @@
 from player import Player
-from enemies import Enemy
+from characters import Character
 
 
 class Action():
@@ -48,8 +48,8 @@ class ViewInventory(Action):
 
 
 class Attack(Action):
-    def __init__(self, enemy):
-        super().__init__(method=Player.attack, name="Attack", hotkey='a', enemy=enemy)
+    def __init__(self, character):
+        super().__init__(method=Player.attack, name="Attack", hotkey='a', character=character)
 
 
 class Flee(Action):
@@ -57,8 +57,8 @@ class Flee(Action):
         super().__init__(method=Player.flee, name="Flee", hotkey='f', tile=tile)
 
 class Converse(Action):
-    def __init__(self, enemy):
-        super().__init__(method=Player.converse, name="Converse", hotkey='c', enemy=enemy)
+    def __init__(self, character):
+        super().__init__(method=Player.converse, name="Converse", hotkey='c', character=character)
 
 class WearItem(Action):
     def __init__(self, item):
