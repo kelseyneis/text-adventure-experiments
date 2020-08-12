@@ -1,6 +1,6 @@
 import world, requests, relevance
 
-class Enemy:
+class Character:
 
     """A base class for all enemies"""
     def __init__(self, name, image, favor, damage, location_x, location_y):
@@ -23,7 +23,7 @@ class Enemy:
     def converse(self):
         raise NotImplementedError()
 
-class DadJokeGuy(Enemy):
+class DadJokeGuy(Character):
     def __init__(self):
         super().__init__(name="Dad Joke Guy", image="Sunflower.jpg", favor=10, damage=2, location_x=0, location_y=4)
 

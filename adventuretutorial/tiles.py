@@ -1,4 +1,4 @@
-import items, enemies, actions, world
+import items, characters, actions, world
 
 
 class MapTile:
@@ -95,23 +95,23 @@ class FindDaggerRoom(LootRoom):
 
 
 class CharacterRoom(MapTile):
-    def __init__(self, x, y, enemy):
-        self.enemy = enemy
+    def __init__(self, x, y, character):
+        self.character = character
         super().__init__(x, y)
 
     def modify_player(self, the_player):
         pass
 
     def available_actions(self):
-        if self.enemy.is_alive():
-            return [actions.Converse(enemy=self.enemy)]
+        if self.character.is_alive():
+            return [actions.Converse(character=self.character)]
         else:
             return self.adjacent_moves()
 
 
 class DadJokeRoom(CharacterRoom):
     def __init__(self, x, y):
-        super().__init__(x, y, enemies.DadJokeGuy())
+        super().__init__(x, y, characters.DadJokeGuy())
 
     def intro_text(self):
         return """
