@@ -6,9 +6,9 @@ from curses import wrapper
 
 class GameWindow():
     def __init__(self):
-        screen = curses.initscr()
-        screen.refresh()
-        self.height, self.width = screen.getmaxyx()  # 40, 111
+        self.screen = curses.initscr()
+        self.screen.refresh()
+        self.height, self.width = self.screen.getmaxyx()  # 40, 111
         self.win = curses.newwin(self.height, self.width, 0, 0)
         self.win.refresh()
         curses.curs_set(2)
@@ -34,6 +34,12 @@ class GameWindow():
             current_y = current_y - 10
         self.win.addstr(current_y + 1, 0, text)
         self.win.refresh()  # y,x coord of top left corner of pad in display; min y,x coord of screen; max y, x coord of screen
+
+    def get_width(self):
+        return self.screen.getmaxyx()[1]
+
+    def get_height(self):
+        return self.screen.getmaxyx()[0]
 
 if __name__ == '__main__':
     GameWindow().play()
