@@ -2,7 +2,7 @@ from PIL import Image
 
 ASCII_CHARS = [ '#', '?', '%', '.', 'S', '+', '.', '*', ':', ',', '@']
 
-def scale_image(image, new_width=100):
+def scale_image(image, new_width=50):
     """Resizes an image preserving the aspect ratio.
     """
     (original_width, original_height) = image.size
@@ -56,5 +56,5 @@ def handle_image_conversion(image_filepath):
 if __name__ == '__main__':
     import sys
 
-    image_file_path = sys.argv[1]
-    handle_image_conversion(image_file_path)
+    # image_file_path = sys.argv[1]
+    handle_image_conversion('/Users/kneis020/repos/text-adventure-experiments/resources/signal-2020-10-10-201340_001.jpeg')
